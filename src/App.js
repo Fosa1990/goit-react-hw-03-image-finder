@@ -15,7 +15,8 @@ export class App extends Component {
     search: '',
     error: null,
     selectedImageURL: '',
-    isModalOpen: false, // false
+    selectedLowImgURL: '',
+    isModalOpen: false,
   };
 
   componentDidUpdate(prevProps, prevState) {

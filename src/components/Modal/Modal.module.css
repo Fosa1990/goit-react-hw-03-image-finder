@@ -4,8 +4,8 @@
   left: 0;
   bottom: 0;
   right: 0;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,8 +14,8 @@
 
 .Modal {
   position: relative;
-  top: 50%;
-  left: 50%;
+  /* top: 50%; */
+  /* left: 50%; */
   padding: 25px 12px 12px;
   min-height: 400px;
   max-width: 80%;
@@ -24,16 +24,16 @@
   background-color: #fff;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 }
 
 .CloseModal {
-  position: fixed;
+  position: absolute;
   background-color: rgb(170, 170, 170);
-  top: -25px;
-  left: 85%;
+  top: -50px;
+  right: 0;
 }
-
+/* 
 @media (max-width: 350px) {
   .CloseModal {
     left: 75%;
@@ -95,4 +95,4 @@
   .CloseModal {
     left: 96%;
   }
-}
+} */

@@ -1,20 +1,20 @@
-//Компонент элемента списка с изображением.
-//Создает DOM - элемент следующей структуры.
-
 import styles from './GalleryItem.module.css';
 
-const ImageGalleryItem = ({ id, webformatURL, largeImageURL, onClick }) => {
+const GalleryItem = ({ id, webformatURL, largeImageURL }, onClick) => {
   return (
-    <li className={styles.GalleryItem} key={`__id-${id}__`}>
+    <li className={styles.GalleryItem} key={`id-${id}`}>
       <img
         onClick={onClick}
-        className={styles.GalleryItem__image}
         src={webformatURL}
-        alt="searched img"
         data-large={largeImageURL}
+        alt="searched img"
+        className={styles.GalleryItem__image}
       />
     </li>
   );
 };
 
-export default ImageGalleryItem;
+export default GalleryItem;
+
+//Компонент элемента списка с изображением.
+//Создает DOM - элемент следующей структуры.
