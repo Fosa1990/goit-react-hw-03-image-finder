@@ -1,0 +1,26 @@
+/* $green: #4caf50;
+ $red: #f44336;
+ $white: #fff; */
+
+.IconButton {
+  margin: 0;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font: inherit;
+  background-color: #f44336;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.IconButton:focus {
+  outline-style: ridge;
+}
+
+.IconButton__Close {
+  background-color: #f44336;
+}

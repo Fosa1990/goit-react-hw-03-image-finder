@@ -1,0 +1,98 @@
+.Backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  padding: 25px 12px 12px;
+  min-height: 400px;
+  max-width: 80%;
+  width: auto;
+  border-radius: 3px;
+  background-color: #fff;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  transform: translate(-50%, -50%);
+}
+
+.CloseModal {
+  position: fixed;
+  background-color: rgb(170, 170, 170);
+  top: -25px;
+  left: 85%;
+}
+
+@media (max-width: 350px) {
+  .CloseModal {
+    left: 75%;
+    right: 5%;
+  }
+}
+
+@media (max-width: 640px) {
+  .CloseModal {
+    left: 88%;
+  }
+  .Modal {
+    min-height: 300px;
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .Modal {
+    min-height: 620px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Modal {
+    top: 55%;
+    min-height: 750px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .Modal {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: 1700px) {
+  .Modal {
+    max-width: 60%;
+  }
+}
+
+@media (max-width: 400px) {
+  .Modal {
+    max-width: 95%;
+  }
+  .Modal {
+    min-height: 250px;
+  }
+}
+
+@media (min-width: 600px) {
+  .CloseModal {
+    left: 92%;
+  }
+}
+
+@media (min-width: 800px) {
+  .CloseModal {
+    left: 96%;
+  }
+}

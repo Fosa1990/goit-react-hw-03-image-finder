@@ -12,10 +12,19 @@
   --green: #27991a;
 }
 
+html {
+  box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0;
   color: var(--blue);
   background-color: var(--dark);
@@ -24,6 +33,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  max-height: auto;
 }
 
 code {
