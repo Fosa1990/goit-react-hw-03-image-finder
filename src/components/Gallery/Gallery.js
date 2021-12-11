@@ -10,11 +10,11 @@ const Gallery = ({ gallery, onClick }) => {
   );
 };
 
+Gallery.defaultProps = { onClick: () => null };
+
 Gallery.propTypes = {
   gallery: PropTypes.arrayOf(PropTypes.object),
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Gallery;
-
-// Список карточек изображений.
-// Создает DOM - элемент следующей структуры.

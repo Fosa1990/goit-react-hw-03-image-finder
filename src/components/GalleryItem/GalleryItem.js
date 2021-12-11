@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from './GalleryItem.module.css';
 
 const GalleryItem = ({ id, webformatURL, largeImageURL, tags }, onClick) => {
@@ -14,7 +15,14 @@ const GalleryItem = ({ id, webformatURL, largeImageURL, tags }, onClick) => {
   );
 };
 
-export default GalleryItem;
+GalleryItem.defaultProps = { onClick: () => null };
 
-//Компонент элемента списка с изображением.
-//Создает DOM - элемент следующей структуры.
+GalleryItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  webformatURL: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string,
+  tags: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default GalleryItem;

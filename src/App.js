@@ -6,6 +6,13 @@ import LoaderSpinner from './components/Loader';
 import Section from './components/Section';
 import Modal from './components/Modal';
 import API from './services/galleryApi';
+import {
+  warningOptions,
+  errorOptions,
+  infoOptions,
+} from './helpers/toastyOptions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export class App extends Component {
   state = {
@@ -31,6 +38,15 @@ export class App extends Component {
 
     API(search, currentPage)
       .then(images => {
+        if (!images) {
+          toast.error('No such results! Your Majesty', errorOptions);
+          return;
+        }
+
+        if (images.length > 1) {
+          toast.info('Found! Your Majesty', infoOptions);
+        }
+
         this.setState(prevState => ({
           gallery: [...prevState.gallery, ...images],
           currentPage: prevState.currentPage + 1,
@@ -52,15 +68,23 @@ export class App extends Component {
         error: null,
       });
     }
+
+    if (!query) {
+      const notify = () =>
+        toast.warn('Search field is empty! Your Majesty', warningOptions);
+      notify();
+      return;
+    }
   };
 
   onLoadMoreButtonClick = () => {
-    const options = {
-      top: window.pageYOffset + document.documentElement.scrollHeight,
-      behavior: 'smooth',
-    };
-
     if (this.state.currentPage > 2) {
+      const options = {
+        top: null,
+        behavior: 'smooth',
+      };
+
+      options.top = window.pageYOffset + document.documentElement.clientHeight;
       setTimeout(() => {
         window.scrollTo(options);
       }, 1000);
@@ -111,6 +135,19 @@ export class App extends Component {
       <Fragment>
         <Searchbar onSubmit={this.handleSubmit} />
 
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          pauseOnHover
+          draggable
+          draggablePercent={60}
+        />
+
         {isLoading && (
           <Section>
             <LoaderSpinner />
@@ -132,7 +169,9 @@ export class App extends Component {
         )}
 
         <Section>
-          {!isLoading && search && <Button onClick={this.fetchPictures} />}
+          {search && gallery.length > 11 && (
+            <Button onClick={this.fetchPictures} />
+          )}
         </Section>
       </Fragment>
     );

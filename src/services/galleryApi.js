@@ -1,5 +1,4 @@
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 const API_KEY = '23935285-7259499af9fe05c3ca983c7fa';
 const BASE_URL = 'https://pixabay.com/api/';
@@ -25,15 +24,4 @@ const fetchGallery = (query, currentPage) => {
   });
 };
 
-fetchGallery.propTypes = {
-  query: PropTypes.string.isRequired,
-  currentPage: PropTypes.number.isRequired,
-};
-
 export default fetchGallery;
-
-// https://pixabay.com/api/?q=cat&page=1&key=your_key&image_type=photo&orientation=horizontal&per_page=12
-
-// id - уникальный идентификатор
-// webformatURL - ссылка на маленькое изображение для списка карточек
-// largeImageURL - ссылка на большое изображение для модального окна

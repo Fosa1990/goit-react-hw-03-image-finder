@@ -1,38 +1,39 @@
-// Компонент принимает один проп onSubmit - функцию
-// для передачи значения инпута при сабмите формы.
-// Создает DOM - элемент следующей структуры.
 import React, { Component } from 'react';
-import { error } from '@pnotify/core';
-import '@pnotify/core/dist/BrightTheme.css';
-import '@pnotify/core/dist/PNotify.css';
+import PropTypes from 'prop-types';
+import { infoOptions } from '../../helpers/toastyOptions';
+import { toast } from 'react-toastify';
 import styles from './Searchbar.module.css';
 
 export class Searchbar extends Component {
-  state = {
-    query: '',
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
   };
+
+  state = { query: '' };
 
   handleChange = event => {
     this.setState({
-      query: event.currentTarget.value,
+      query: event.currentTarget.value.toLowerCase(),
     });
   };
 
   handleSubmit = event => {
     const { query } = this.state;
+    const { onSubmit } = this.props;
     event.preventDefault();
 
-    if (!query) {
-      error('Search field is empty!');
+    if (query.trim() === '') {
+      toast.info('Write something! Your Majesty', infoOptions);
       return;
     }
 
-    this.props.onSubmit(query);
+    onSubmit(query);
     this.setState({ query: '' });
   };
 
   render() {
     const { query } = this.state;
+
     return (
       <header className={styles.Search}>
         <form className={styles.Search__form} onSubmit={this.handleSubmit}>
