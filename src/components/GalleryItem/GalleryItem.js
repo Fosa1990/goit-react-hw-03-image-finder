@@ -1,13 +1,13 @@
 import styles from './GalleryItem.module.css';
 
-const GalleryItem = ({ id, webformatURL, largeImageURL }, onClick) => {
+const GalleryItem = ({ id, webformatURL, largeImageURL, tags }, onClick) => {
   return (
     <li className={styles.GalleryItem} key={`id-${id}`}>
       <img
         onClick={onClick}
         src={webformatURL}
         data-large={largeImageURL}
-        alt="searched img"
+        alt={tags}
         className={styles.GalleryItem__image}
       />
     </li>

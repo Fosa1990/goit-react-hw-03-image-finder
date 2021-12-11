@@ -5,7 +5,7 @@ import Gallery from './components/Gallery';
 import LoaderSpinner from './components/Loader';
 import Section from './components/Section';
 import Modal from './components/Modal';
-import imagesApi from './services/galleryApi';
+import API from './services/galleryApi';
 
 export class App extends Component {
   state = {
@@ -16,6 +16,7 @@ export class App extends Component {
     error: null,
     selectedBigImageURL: '',
     selectedLowImageURL: '',
+    altImageTitle: '',
     isModalOpen: false,
   };
 
@@ -28,7 +29,7 @@ export class App extends Component {
 
     this.setState({ isLoading: true });
 
-    imagesApi(search, currentPage)
+    API(search, currentPage)
       .then(images => {
         this.setState(prevState => ({
           gallery: [...prevState.gallery, ...images],
@@ -54,17 +55,19 @@ export class App extends Component {
   };
 
   onLoadMoreButtonClick = () => {
+    const options = {
+      top: window.pageYOffset + document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    };
+
     if (this.state.currentPage > 2) {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      });
+      setTimeout(() => {
+        window.scrollTo(options);
+      }, 1000);
     }
   };
 
   handleImageClick = event => {
-    console.log('e.t: ', event);
-
     if (event.target.nodeName !== 'IMG') {
       return;
     }
@@ -73,11 +76,13 @@ export class App extends Component {
 
     const fullImageLink = event.target.getAttribute('data-large');
     const lowImageLink = event.target.getAttribute('src');
+    const altImageTitle = event.target.getAttribute('alt');
 
     this.setState({
       selectedBigImageURL: fullImageLink,
       selectedLowImageURL: lowImageLink,
       isModalOpen: true,
+      altImageTitle: altImageTitle,
     });
   };
 
@@ -85,6 +90,10 @@ export class App extends Component {
     this.setState({
       isModalOpen: !this.state.isModalOpen,
     });
+
+    if (this.state.isModalOpen) {
+      document.body.style.overflowY = 'hidden';
+    }
   };
 
   render() {
@@ -95,6 +104,7 @@ export class App extends Component {
       selectedBigImageURL,
       isModalOpen,
       selectedLowImageURL,
+      altImageTitle,
     } = this.state;
 
     return (
@@ -116,7 +126,7 @@ export class App extends Component {
             <img
               src={selectedLowImageURL}
               data-src={selectedBigImageURL}
-              alt="fullsize of images"
+              alt={altImageTitle}
             />
           </Modal>
         )}

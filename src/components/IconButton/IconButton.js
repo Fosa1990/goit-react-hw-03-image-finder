@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import styles from './IconButton.module.css';
 
-const IconButton = ({ children, onClick, ...allyProps }) => {
+const IconButton = ({ children, onClick, className, ...allyProps }) => {
   return (
     <button
       onClick={onClick}
       type="button"
-      className={styles.IconButton}
+      className={`${styles.IconButton} ${className}`}
       {...allyProps}
     >
       {children}
