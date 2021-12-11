@@ -14,8 +14,8 @@ export class App extends Component {
     currentPage: 1,
     search: '',
     error: null,
-    selectedImageURL: '',
-    selectedLowImgURL: '',
+    selectedBigImageURL: '',
+    selectedLowImageURL: '',
     isModalOpen: false,
   };
 
@@ -75,8 +75,8 @@ export class App extends Component {
     const lowImageLink = event.target.getAttribute('src');
 
     this.setState({
-      selectedImageURL: fullImageLink,
-      selectedLowImgURL: lowImageLink,
+      selectedBigImageURL: fullImageLink,
+      selectedLowImageURL: lowImageLink,
       isModalOpen: true,
     });
   };
@@ -92,9 +92,9 @@ export class App extends Component {
       search,
       gallery,
       isLoading,
-      selectedImageURL,
+      selectedBigImageURL,
       isModalOpen,
-      selectedLowImgUrl,
+      selectedLowImageURL,
     } = this.state;
 
     return (
@@ -114,8 +114,8 @@ export class App extends Component {
         {isModalOpen && (
           <Modal onClose={this.toggleModal}>
             <img
-              src={selectedLowImgUrl}
-              data-src={selectedImageURL}
+              src={selectedLowImageURL}
+              data-src={selectedBigImageURL}
               alt="fullsize of images"
             />
           </Modal>
