@@ -49,7 +49,7 @@ export class Searchbar extends Component {
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="Search images and photos"
+            placeholder="What are we looking for? Your Majesty"
           />
         </form>
       </header>
