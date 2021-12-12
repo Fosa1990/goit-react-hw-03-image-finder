@@ -7,7 +7,7 @@ const GalleryItem = ({ id, webformatURL, largeImageURL, tags }, onClick) => {
       <img
         onClick={onClick}
         src={webformatURL}
-        data-large={largeImageURL}
+        data-src={largeImageURL}
         alt={tags}
         className={styles.GalleryItem__image}
       />

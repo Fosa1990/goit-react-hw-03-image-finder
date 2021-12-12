@@ -19,7 +19,9 @@ const fetchGallery = (query, currentPage) => {
     if (response.status === 200 && response.data.hits.length !== 0) {
       return response.data.hits;
     } else {
-      return null;
+      return Promise.reject(
+        new Error(console.log(`No images by name "${query}", Your Majesty`)),
+      );
     }
   });
 };

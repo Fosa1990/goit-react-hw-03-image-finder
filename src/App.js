@@ -6,11 +6,7 @@ import LoaderSpinner from './components/Loader';
 import Section from './components/Section';
 import Modal from './components/Modal';
 import API from './services/galleryApi';
-import {
-  warningOptions,
-  errorOptions,
-  infoOptions,
-} from './helpers/toastyOptions';
+import { errorOptions, infoOptions } from './helpers/toastyOptions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -21,14 +17,14 @@ export class App extends Component {
     currentPage: 1,
     search: '',
     error: null,
-    selectedBigImageURL: '',
-    selectedLowImageURL: '',
+    fullImageURL: '',
     altImageTitle: '',
     isModalOpen: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.search !== this.state.search) this.fetchPictures();
+    const { search } = this.state;
+    if (prevState.search !== search) this.fetchPictures();
   }
 
   fetchPictures = () => {
@@ -52,7 +48,11 @@ export class App extends Component {
           currentPage: prevState.currentPage + 1,
         }));
       })
-      .catch(error => this.setState({ error }))
+      .catch(error => {
+        const { search } = this.state;
+        toast.error(`No images by "${search}", Your Majesty`, errorOptions);
+        this.setState({ error });
+      })
       .finally(() => {
         this.onLoadMoreButtonClick();
         this.setState({ isLoading: false });
@@ -67,13 +67,6 @@ export class App extends Component {
         currentPage: 1,
         error: null,
       });
-    }
-
-    if (!query) {
-      const notify = () =>
-        toast.warn('Search field is empty! Your Majesty', warningOptions);
-      notify();
-      return;
     }
   };
 
@@ -98,13 +91,11 @@ export class App extends Component {
 
     event.preventDefault();
 
-    const fullImageLink = event.target.getAttribute('data-large');
-    const lowImageLink = event.target.getAttribute('src');
+    const fullImageLink = event.target.getAttribute('data-src');
     const altImageTitle = event.target.getAttribute('alt');
 
     this.setState({
-      selectedBigImageURL: fullImageLink,
-      selectedLowImageURL: lowImageLink,
+      fullImageURL: fullImageLink,
       isModalOpen: true,
       altImageTitle: altImageTitle,
     });
@@ -125,9 +116,8 @@ export class App extends Component {
       search,
       gallery,
       isLoading,
-      selectedBigImageURL,
+      fullImageURL,
       isModalOpen,
-      selectedLowImageURL,
       altImageTitle,
     } = this.state;
 
@@ -160,11 +150,7 @@ export class App extends Component {
 
         {isModalOpen && (
           <Modal onClose={this.toggleModal}>
-            <img
-              src={selectedLowImageURL}
-              data-src={selectedBigImageURL}
-              alt={altImageTitle}
-            />
+            <img src={fullImageURL} alt={altImageTitle} />
           </Modal>
         )}
 
