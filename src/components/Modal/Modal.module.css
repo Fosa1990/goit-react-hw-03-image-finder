@@ -13,6 +13,7 @@
 
 .Modal {
   position: relative;
+  display: inline-flex;
   padding: 25px 12px 12px;
   min-height: 400px;
   max-width: calc(100vw - 72px);
@@ -43,4 +44,9 @@
   background-color: var(--light-purple);
   outline: 3px solid var(--white);
   transform: rotateY(180deg);
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
 }
