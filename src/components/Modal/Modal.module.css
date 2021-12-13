@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   background-color: var(--backdrop);
+  overflow-y: scroll;
 }
 
 .Modal {
@@ -35,15 +36,12 @@
   fill: var(--light-purple);
   background-color: var(--white);
   outline: 3px solid var(--light-purple);
-
-  transform: rotateY(0deg);
 }
 
 .CloseModal:hover {
   fill: var(--white);
   background-color: var(--light-purple);
   outline: 3px solid var(--white);
-  transform: rotateY(180deg);
 }
 
 img {
