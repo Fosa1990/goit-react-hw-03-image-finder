@@ -20,7 +20,7 @@ GalleryItem.defaultProps = { onClick: () => null };
 GalleryItem.propTypes = {
   id: PropTypes.string.isRequired,
   webformatURL: PropTypes.string.isRequired,
-  largeImageURL: PropTypes.string,
+  largeImageURL: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };

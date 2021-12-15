@@ -97,7 +97,7 @@ export class App extends Component {
     this.setState({
       fullImageURL: fullImageLink,
       isModalOpen: true,
-      altImageTitle: altImageTitle,
+      altImageTitle,
     });
   };
 
